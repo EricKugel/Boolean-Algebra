@@ -48,7 +48,7 @@ def postfix(data):
             while stack[-1] != "(":
                 output.append(stack.pop())
             stack.pop()
-            if stack[-1] == "!":
+            if len(stack) > 0 and stack[-1] == "!":
                 output.append(stack.pop())
     while len(stack) > 0:
         output.append(stack.pop())
@@ -80,4 +80,4 @@ if __name__ == "__main__":
             queue.append(item + [False])
             queue.append(item + [True])
     correct_variables = list(filter(lambda x : evaluate(data, x), all_variables))
-    print("\n".join([str(variables) for variables in correct_variables]))
+    print("\n".join([str(variables).replace("True", "1").replace("False", "0") for variables in correct_variables]))
